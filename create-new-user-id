@@ -1,0 +1,35 @@
+import requests
+import json
+
+
+id = input("Enter id: ")
+name = input("Enter name: ")
+email = input("Enter email: ")
+gender = input("Enter gender: ")
+status = input("Enter status: ")
+
+user = {
+    "id": id,
+    "name": name,
+    "email": email,
+    "gender": gender,
+    "status": status
+    }
+
+
+json_string = json.dumps(user)
+
+url = "https://gorest.co.in/public/v2/users"
+
+bearer_token = "bearer_token"
+
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": f"Bearer {bearer_token}"
+}
+response = requests.post(url, data=json_string, headers=headers)
+
+print(f"Status Code: {response.status_code}")
+print(f"Response Text: {response.text}")
+
+
